@@ -17,6 +17,8 @@ defmodule CbaManagementWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/add-district", DistrictController, :index
+    post "/create-district", DistrictController, :create_district
   end
 
   # Other scopes may use custom stacks.

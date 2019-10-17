@@ -1,0 +1,12 @@
+<div>
+    <h1>Add District</h1>
+    <%= form_for @conn, Routes.district_path(@conn, :create_district), [ method: "POST"], fn f -> %>
+        <%= label(f, :name, "Name") %>
+        <%= text_input f, :name %>
+        <%= label(f, :name, "Phone Number") %>
+        <%= text_input f, :phone_number %>
+        <%= label(f, :name, "Zip Code") %>
+        <%= text_input f, :zip_code %>
+        <%= submit "Submit" %>
+    <% end %>
+</div>

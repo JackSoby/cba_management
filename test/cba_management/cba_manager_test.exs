@@ -126,4 +126,65 @@ defmodule CbaManagement.CbaManagerTest do
       assert %Ecto.Changeset{} = CbaManager.change_agreement(agreement)
     end
   end
+
+  describe "years" do
+    alias CbaManagement.CbaManager.Year
+
+    @valid_attrs %{amount: "some amount", number_of_years: "some number_of_years"}
+    @update_attrs %{amount: "some updated amount", number_of_years: "some updated number_of_years"}
+    @invalid_attrs %{amount: nil, number_of_years: nil}
+
+    def year_fixture(attrs \\ %{}) do
+      {:ok, year} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> CbaManager.create_year()
+
+      year
+    end
+
+    test "list_years/0 returns all years" do
+      year = year_fixture()
+      assert CbaManager.list_years() == [year]
+    end
+
+    test "get_year!/1 returns the year with given id" do
+      year = year_fixture()
+      assert CbaManager.get_year!(year.id) == year
+    end
+
+    test "create_year/1 with valid data creates a year" do
+      assert {:ok, %Year{} = year} = CbaManager.create_year(@valid_attrs)
+      assert year.amount == "some amount"
+      assert year.number_of_years == "some number_of_years"
+    end
+
+    test "create_year/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = CbaManager.create_year(@invalid_attrs)
+    end
+
+    test "update_year/2 with valid data updates the year" do
+      year = year_fixture()
+      assert {:ok, %Year{} = year} = CbaManager.update_year(year, @update_attrs)
+      assert year.amount == "some updated amount"
+      assert year.number_of_years == "some updated number_of_years"
+    end
+
+    test "update_year/2 with invalid data returns error changeset" do
+      year = year_fixture()
+      assert {:error, %Ecto.Changeset{}} = CbaManager.update_year(year, @invalid_attrs)
+      assert year == CbaManager.get_year!(year.id)
+    end
+
+    test "delete_year/1 deletes the year" do
+      year = year_fixture()
+      assert {:ok, %Year{}} = CbaManager.delete_year(year)
+      assert_raise Ecto.NoResultsError, fn -> CbaManager.get_year!(year.id) end
+    end
+
+    test "change_year/1 returns a year changeset" do
+      year = year_fixture()
+      assert %Ecto.Changeset{} = CbaManager.change_year(year)
+    end
+  end
 end
