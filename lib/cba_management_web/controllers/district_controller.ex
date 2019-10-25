@@ -1,13 +1,18 @@
 defmodule CbaManagementWeb.DistrictController do
   use CbaManagementWeb, :controller
   require IEx
+  alias CbaManagement.CbaManager
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    districts = CbaManager.list_district()
+
+    render(conn, "index.html", districts: districts)
   end
 
   def create_district(conn, params) do
-    IEx.pry()
+    result = CbaManager.create_district(params)
+
     conn
+    |> redirect(to: Routes.district_path(conn, :index))
   end
 end

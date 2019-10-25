@@ -9,4 +9,12 @@
         <%= text_input f, :zip_code %>
         <%= submit "Submit" %>
     <% end %>
+    <h1>Districts</h1>
+    <%= for district <- @districts do %>
+        <a href="">
+            <div class="jumbotron text-center">
+                <%=district.name%>
+            </div>
+        </a>
+    <% end %>
 </div>
