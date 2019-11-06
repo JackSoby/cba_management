@@ -11,7 +11,7 @@
     <% end %>
     <h1>Districts</h1>
     <%= for district <- @districts do %>
-        <a href="">
+        <a href="/district/<%= district.id %>">
             <div class="jumbotron text-center">
                 <%=district.name%>
             </div>

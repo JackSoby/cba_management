@@ -18,6 +18,7 @@ defmodule CbaManagementWeb.Router do
 
     get "/", PageController, :index
     get "/add-district", DistrictController, :index
+    get "/district/:id", DistrictController, :show
     post "/create-district", DistrictController, :create_district
   end
 

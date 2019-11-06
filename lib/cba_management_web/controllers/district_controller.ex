@@ -9,6 +9,12 @@ defmodule CbaManagementWeb.DistrictController do
     render(conn, "index.html", districts: districts)
   end
 
+  def show(conn, %{"id" => id}) do
+    district = CbaManager.get_district!(id)
+
+    render(conn, "show.html", district: district)
+  end
+
   def create_district(conn, params) do
     result = CbaManager.create_district(params)
 
