@@ -19,7 +19,10 @@ defmodule CbaManagementWeb.Router do
     get "/", PageController, :index
     get "/add-district", DistrictController, :index
     get "/district/:id", DistrictController, :show
+    get "/agreement/:id", AgreementController, :show
+
     post "/create-district", DistrictController, :create_district
+    post "/create-agreement", AgreementController, :create_agreement
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,6 @@
+<div>
+    <h1>Agreement</h1>
+   <div><%=@agreement.name%></div>
+
+
+</div>

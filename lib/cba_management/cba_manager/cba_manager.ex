@@ -18,6 +18,7 @@ defmodule CbaManagement.CbaManager do
 
   """
   def list_district do
+    District
     Repo.all(District)
   end
 
@@ -35,7 +36,12 @@ defmodule CbaManagement.CbaManager do
       ** (Ecto.NoResultsError)
 
   """
-  def get_district!(id), do: Repo.get!(District, id)
+  def get_district!(id) do
+    District
+    |> preload([:agreements])
+    |> where([d], d.id == ^id)
+    |> Repo.one()
+  end
 
   @doc """
   Creates a district.

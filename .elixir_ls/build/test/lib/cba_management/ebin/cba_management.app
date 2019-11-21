@@ -11,6 +11,8 @@
                         'Elixir.CbaManagement.CbaManager.Schemas.Year',
                         'Elixir.CbaManagement.DataCase',
                         'Elixir.CbaManagement.Repo','Elixir.CbaManagementWeb',
+                        'Elixir.CbaManagementWeb.AgreementController',
+                        'Elixir.CbaManagementWeb.AgreementView',
                         'Elixir.CbaManagementWeb.ChannelCase',
                         'Elixir.CbaManagementWeb.ConnCase',
                         'Elixir.CbaManagementWeb.DistrictController',

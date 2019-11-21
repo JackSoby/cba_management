@@ -8,7 +8,7 @@ defmodule CbaManagement.CbaManager.Schemas.Agreement do
     field :name, :string
     field :year, :string
     belongs_to(:district, CbaManagement.CbaManager.Schemas.District)
-    has_many(:years, CbaManagement.CbaManager.Schemas.Year)
+    has_many(:years_of_experience, CbaManagement.CbaManager.Schemas.Year)
 
     timestamps()
   end

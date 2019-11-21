@@ -1,4 +1,21 @@
 <div>
     <h1>District</h1>
    <div><%=@district.name%></div>
+    <h1>Add District</h1>
+    <%= form_for @conn, Routes.agreement_path(@conn, :create_agreement), [ method: "POST"], fn f -> %>
+        <%= label(f, :name, "Name") %>
+        <%= text_input f, :name %>
+        <%= label(f, :name, "Year") %>
+        <%= text_input f, :year %>
+        <%= hidden_input f, :district_id, value: @district.id %>
+        <%= submit "Submit" %>
+    <% end %>
+    <h2>Agreements</h2>
+    <%= for agreement <- @district.agreements do %>
+        <a href="/agreement/<%= agreement.id %>">
+            <div class="jumbotron text-center">
+                <%=agreement.name%>
+            </div>
+        </a>
+    <% end %>
 </div>
