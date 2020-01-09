@@ -1,6 +1,7 @@
 defmodule CbaManagement.CbaManager.Schemas.Year do
   use Ecto.Schema
   import Ecto.Changeset
+  require IEx
 
   schema "years" do
     field :amount, :string

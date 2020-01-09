@@ -137,7 +137,14 @@ defmodule CbaManagement.CbaManager do
       ** (Ecto.NoResultsError)
 
   """
-  def get_agreement!(id), do: Repo.get!(Agreement, id)
+  def get_agreement!(id) do
+    Agreement
+    |> where([a], a.id == ^id)
+    |> preload([:years_of_experience])
+    |> Repo.one()
+
+    # Repo.get!(Agreement, id)
+  end
 
   @doc """
   Creates a agreement.

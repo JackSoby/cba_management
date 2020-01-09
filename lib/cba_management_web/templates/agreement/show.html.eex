@@ -1,6 +1,20 @@
 <div>
     <h1>Agreement</h1>
    <div><%=@agreement.name%></div>
+    <h2>Add Years Of Experince</h2>
+    <%= form_for @conn, Routes.agreement_path(@conn, :create_year_of_experince), [ method: "POST"], fn f -> %>
+        <%= label(f, :number_of_years, "Years") %>
+        <%= number_input f, :number_of_years %>
+        <%= label(f, :name, "Amount") %>
+        <%= number_input f, :amount %>
+        <%= hidden_input f, :agreement_id, value: @agreement.id %>
+        <%= submit "Submit" %>
+    <% end %> 
 
-
+    <%= for year <- @agreement.years_of_experience do %>
+        <div class="jumbotron text-center">
+            <%=year.number_of_years%>
+            <%=year.amount%>
+        </div>
+    <% end %>
 </div>
