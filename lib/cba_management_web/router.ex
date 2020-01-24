@@ -1,5 +1,6 @@
 defmodule CbaManagementWeb.Router do
   use CbaManagementWeb, :router
+  import CbaManagement.UserManager.Pipeline
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -11,6 +12,31 @@ defmodule CbaManagementWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :auth do
+    plug CbaManagement.UserManager.Pipeline
+  end
+
+  # We use ensure_auth to fail if there is no one logged in
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
+  scope "/", CbaManagementWeb do
+    pipe_through [:browser, :auth]
+
+    get "/", PageController, :index
+
+    get "/login", SessionController, :new
+    post "/login", SessionController, :login
+    get "/logout", SessionController, :logout
+  end
+
+  scope "/", CbaManagementWeb do
+    pipe_through [:browser, :auth, :ensure_auth]
+
+    get "/protected", PageController, :protected
   end
 
   scope "/", CbaManagementWeb do

@@ -28,3 +28,7 @@ config :phoenix, :json_library, Jason
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+config :cba_management, CbaManagement.UserManager.Guardian,
+  issuer: "cba_management",
+  secret_key: "Zvv1MO+9Frwzou6yg4Mwyj7cVgUdkIeGecmBxfq4D7tId9cAhbmmfwjuCgVOXyFl"
