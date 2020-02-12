@@ -26,9 +26,7 @@ defmodule CbaManagementWeb.Router do
   scope "/", CbaManagementWeb do
     pipe_through [:browser, :auth]
 
-    get "/", PageController, :index
-
-    get "/login", SessionController, :new
+    get "/", SessionController, :new
     post "/login", SessionController, :login
     get "/logout", SessionController, :logout
   end
@@ -40,7 +38,7 @@ defmodule CbaManagementWeb.Router do
   end
 
   scope "/", CbaManagementWeb do
-    pipe_through :browser
+    pipe_through [:browser, :auth]
 
     get "/", PageController, :index
     get "/add-district", DistrictController, :index

@@ -26,7 +26,7 @@ defmodule CbaManagementWeb.SessionController do
     # This module's full name is Auth.UserManager.Guardian.Plug,
     |> Guardian.Plug.sign_out()
     # and the arguments specfied in the Guardian.Plug.sign_out()
-    |> redirect(to: "/login")
+    |> redirect(to: "/")
   end
 
   # docs are not applicable here
@@ -40,7 +40,7 @@ defmodule CbaManagementWeb.SessionController do
 
     res
     # and the arguments specified in the Guardian.Plug.sign_in()
-    |> redirect(to: "/protected")
+    |> redirect(to: "/add-district")
   end
 
   # docs are not applicable here.
